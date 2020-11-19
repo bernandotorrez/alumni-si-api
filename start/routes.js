@@ -18,23 +18,33 @@ const Route = use('Route')
 const { validate, validator } = use('Validator')
 
 Route.get('/', () => {
-  return { routeList: [
-    {
-      route: '/api/v1/alumni',
-      method: 'GET',
-      desc: 'Get All Data Alumni'
-    },
-    {
-      route: '/api/v1/alumni/{nim}',
-      method: 'GET',
-      desc: 'Get One Data Alumni'
-    },
-    {
-      route: '/api/v1/alumni/create',
-      method: 'POST',
-      desc: 'Create Alumni Data' 
+  return { 
+    v1: {
+      routeList: [
+        {
+          route: '/api/v1/alumni',
+          method: 'GET',
+          desc: 'Get All Data Alumni'
+        },
+        {
+          route: '/api/v1/alumni/{nim}',
+          method: 'GET',
+          desc: 'Get One Data Alumni'
+        },
+        {
+          route: '/api/v1/alumni/create',
+          method: 'POST',
+          desc: 'Create Alumni Data' 
+        },
+        {
+          route: '/api/v1/alumni/edit?{nim}',
+          method: 'PATCH',
+          desc: 'Update Alumni Data By NIM' 
+        }
+      ]
     }
-  ] }
+    
+ }
 })
 
 Route.group(() => {
@@ -45,5 +55,6 @@ Route.group(() => {
   Route.get('/alumni', 'AlumniController.index'),
   Route.get('/alumni/:nim', 'AlumniController.getOne')
   Route.post('/alumni/create', 'AlumniController.create').validator('CreateAlumni')
+  Route.patch('/alumni/edit/:nim', 'AlumniController.edit').validator('UpdateAlumni')
 
 }).prefix('/api/v1')

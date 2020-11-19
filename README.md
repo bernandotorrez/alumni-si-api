@@ -1,5 +1,10 @@
 # Adonis API application
 
+To My REST API Consumer :
+
+To see all Available API, please Open the REST API BASE URL
+e.g : http://127.0.0.1:333/
+
 This is the boilerplate for creating an API server in AdonisJs, it comes pre-configured with.
 
 1. Bodyparser

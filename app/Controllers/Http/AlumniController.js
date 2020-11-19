@@ -49,7 +49,7 @@ class AlumniController {
 
     async create({request, response}) {
         const find = await AlumniModel.find(request.post().nim)
-        
+
         if(find) {
             return response.status(200).json({
                 httpStatus: 200,
@@ -76,6 +76,10 @@ class AlumniController {
                 })
             }
         }
+    }
+
+    async edit({request, param, response}) {
+        
     }
 }
 
