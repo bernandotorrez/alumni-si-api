@@ -1,5 +1,29 @@
 # Adonis API application
 
+## How to Use
+1. Copy .env.example to .env
+2. Create Database
+3. Set the valid .env
+4. run : 
+```bash
+adonis key:generate
+```
+5. run : 
+```bash
+adonis migration:run
+```
+
+5. run : 
+```bash
+adonis seed
+```
+
+6. run : 
+```bash
+adonis serve --dev
+```
+
+## Note
 To My REST API Consumer :
 
 To see all Available API, please Open the REST API BASE URL

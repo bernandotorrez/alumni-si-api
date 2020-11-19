@@ -1,0 +1,248 @@
+{
+	"info": {
+		"_postman_id": "fac743c8-71cc-4837-b175-37724380d231",
+		"name": "Ilusi API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "api/v1/alumni",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3333/api/v1/alumni/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"v1",
+						"alumni",
+						""
+					]
+				},
+				"description": "Get All Data Alumni"
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/alumni/{nim}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3333/api/v1/alumni/1310512042",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"v1",
+						"alumni",
+						"1310512042"
+					]
+				},
+				"description": "Get One Data Alumni By NIM"
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/alumni/create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nim",
+							"value": "1310512042",
+							"type": "text"
+						},
+						{
+							"key": "nama",
+							"value": "Bernand D H",
+							"type": "text"
+						},
+						{
+							"key": "jenis_kelamin",
+							"value": "L",
+							"type": "text"
+						},
+						{
+							"key": "tempat_lahir",
+							"value": "Jakarta",
+							"type": "text"
+						},
+						{
+							"key": "tanggal_lahir",
+							"value": "1995-10-19",
+							"type": "text"
+						},
+						{
+							"key": "no_hp",
+							"value": "089687610639",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Jalan Moh Kahfi 1, Gang. Syarpa",
+							"type": "text"
+						},
+						{
+							"key": "angkatan_masuk",
+							"value": "2013",
+							"type": "text"
+						},
+						{
+							"key": "fakultas",
+							"value": "Fakultas Ilmu Komputer",
+							"type": "text"
+						},
+						{
+							"key": "jurusan",
+							"value": "Sistem Informasi",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3333/api/v1/alumni/create",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"v1",
+						"alumni",
+						"create"
+					]
+				},
+				"description": "Create Data Alumni"
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/alumni/edit/{nim}",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "nama",
+							"value": "Bernand D H Update",
+							"type": "text"
+						},
+						{
+							"key": "jenis_kelamin",
+							"value": "L",
+							"type": "text"
+						},
+						{
+							"key": "tempat_lahir",
+							"value": "Jakarta Update",
+							"type": "text"
+						},
+						{
+							"key": "tanggal_lahir",
+							"value": "1995-10-19",
+							"type": "text"
+						},
+						{
+							"key": "no_hp",
+							"value": "123456789012",
+							"type": "text"
+						},
+						{
+							"key": "alamat",
+							"value": "Jalan Moh Kahfi 1, Gang. Syarpa Update",
+							"type": "text"
+						},
+						{
+							"key": "angkatan_masuk",
+							"value": "2013",
+							"type": "text"
+						},
+						{
+							"key": "fakultas",
+							"value": "Fakultas Ilmu Komputer Update",
+							"type": "text"
+						},
+						{
+							"key": "jurusan",
+							"value": "Sistem Informasi Update",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:3333/api/v1/alumni/edit/1310512042",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"v1",
+						"alumni",
+						"edit",
+						"1310512042"
+					]
+				},
+				"description": "Update Data Alumni By NIM"
+			},
+			"response": []
+		},
+		{
+			"name": "api/v1/alumni/delete/{nim}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:3333/api/v1/alumni/delete/1310512042",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "3333",
+					"path": [
+						"api",
+						"v1",
+						"alumni",
+						"delete",
+						"1310512042"
+					]
+				},
+				"description": "Delete Data Alumni By NIM"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
