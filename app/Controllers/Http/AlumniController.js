@@ -40,7 +40,7 @@ class AlumniController {
         } else {
             return response.status(200).json({
                 httpStatus: 400,
-                message: 'no_data',
+                message: 'not_found',
                 total: 0,
                 data: []
             })
@@ -53,7 +53,7 @@ class AlumniController {
         if(find) {
             return response.status(200).json({
                 httpStatus: 200,
-                message: 'nim already exist!',
+                message: 'exist',
                 total: 0,
                 data: []
             })
@@ -63,14 +63,14 @@ class AlumniController {
             if(create) {
                 return response.status(200).json({
                     httpStatus: 200,
-                    message: 'create data success',
+                    message: 'create_success',
                     total: 1,
                     data: create
                 })
             } else {
                 return response.status(200).json({
                     httpStatus: 200,
-                    message: 'create data failed',
+                    message: 'create_failed',
                     total: 0,
                     data: []
                 })
@@ -78,8 +78,66 @@ class AlumniController {
         }
     }
 
-    async edit({request, param, response}) {
-        
+    async edit({request, params, response}) {
+        const find = await AlumniModel.find(params.nim)
+
+        if(!find) {
+            return response.status(200).json({
+                httpStatus: 200,
+                message: 'not_found',
+                total: 0,
+                data: []
+            })
+        } else {
+            const update = await AlumniModel.query().where('nim', params.nim).update(request.post())
+
+            if(update) {
+                return response.status(200).json({
+                    httpStatus: 200,
+                    message: 'update_success',
+                    total: 1,
+                    data: request.post()
+                })
+            } else {
+                return response.status(200).json({
+                    httpStatus: 200,
+                    message: 'update_failed',
+                    total: 0,
+                    data: []
+                })
+            }
+        }
+    }
+
+    async delete({params, response}) {
+        const find = await AlumniModel.find(params.nim)
+
+        if(!find) {
+            return response.status(200).json({
+                httpStatus: 200,
+                message: 'not_found',
+                total: 0,
+                data: []
+            })
+        } else {
+            const destroy = await find.delete()
+
+            if(destroy) {
+                return response.status(200).json({
+                    httpStatus: 200,
+                    message: 'delete_success',
+                    total: 0,
+                    data: params.nim
+                })
+            } else {
+                return response.status(200).json({
+                    httpStatus: 200,
+                    message: 'delete_failed',
+                    total: 0,
+                    data: []
+                })
+            }
+        }
     }
 }
 

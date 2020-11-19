@@ -56,5 +56,6 @@ Route.group(() => {
   Route.get('/alumni/:nim', 'AlumniController.getOne')
   Route.post('/alumni/create', 'AlumniController.create').validator('CreateAlumni')
   Route.patch('/alumni/edit/:nim', 'AlumniController.edit').validator('UpdateAlumni')
+  Route.delete('/alumni/delete/:nim', 'AlumniController.delete')
 
 }).prefix('/api/v1')

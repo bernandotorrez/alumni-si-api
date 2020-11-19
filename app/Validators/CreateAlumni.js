@@ -20,9 +20,9 @@ class CreateAlumni {
     const { message, field, validation } = errorMessages[0]
     return this.ctx.response.status(400).send({
       httpStatus: 400,
-      message: message,
+      message: 'error_validation',
       total: 0,
-      data: field+' '+validation
+      data: message
     })
   }
 }
