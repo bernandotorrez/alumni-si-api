@@ -15,6 +15,7 @@
 
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
+const { validate, validator } = use('Validator')
 
 Route.get('/', () => {
   return { routeList: [
@@ -36,5 +37,6 @@ Route.group(() => {
    */
   Route.get('/alumni', 'AlumniController.index'),
   Route.get('/alumni/:nim', 'AlumniController.getOne')
+  Route.post('/alumni/create', 'AlumniController.create').validator('CreateAlumni')
 
 }).prefix('/api/v1')

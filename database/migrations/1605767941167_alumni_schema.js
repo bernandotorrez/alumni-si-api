@@ -14,7 +14,7 @@ class AlumniSchema extends Schema {
       table.string('no_hp', 15).notNullable()
       table.text('alamat').notNullable()
       table.string('angkatan_masuk', 4).notNullable()
-      table.string('fakultas', 50).notNullable()
+      table.string('fakultas', 100).notNullable()
       table.string('jurusan', 50).notNullable()
       table.timestamps()
     })

@@ -46,6 +46,10 @@ class AlumniController {
             })
         }
     }
+
+    async create({request, response}) {
+        return response.status(200).send('create alumni')
+    }
 }
 
 module.exports = AlumniController
