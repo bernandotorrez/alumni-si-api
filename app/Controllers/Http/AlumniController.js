@@ -48,7 +48,34 @@ class AlumniController {
     }
 
     async create({request, response}) {
-        return response.status(200).send('create alumni')
+        const find = await AlumniModel.find(request.post().nim)
+        
+        if(find) {
+            return response.status(200).json({
+                httpStatus: 200,
+                message: 'nim already exist!',
+                total: 0,
+                data: []
+            })
+        } else {
+            const create = await AlumniModel.create(request.post())
+
+            if(create) {
+                return response.status(200).json({
+                    httpStatus: 200,
+                    message: 'create data success',
+                    total: 1,
+                    data: create
+                })
+            } else {
+                return response.status(200).json({
+                    httpStatus: 200,
+                    message: 'create data failed',
+                    total: 0,
+                    data: []
+                })
+            }
+        }
     }
 }
 

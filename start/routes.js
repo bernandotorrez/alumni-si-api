@@ -21,11 +21,18 @@ Route.get('/', () => {
   return { routeList: [
     {
       route: '/api/v1/alumni',
+      method: 'GET',
       desc: 'Get All Data Alumni'
     },
     {
       route: '/api/v1/alumni/{nim}',
+      method: 'GET',
       desc: 'Get One Data Alumni'
+    },
+    {
+      route: '/api/v1/alumni/create',
+      method: 'POST',
+      desc: 'Create Alumni Data' 
     }
   ] }
 })
