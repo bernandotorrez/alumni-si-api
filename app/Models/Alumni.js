@@ -9,7 +9,7 @@ class Alumni extends Model {
     }
 
     static get primaryKey() {
-        return 'nik'
+        return 'nim'
     }
 
     static get table() {

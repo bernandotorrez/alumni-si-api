@@ -28,21 +28,20 @@ class AlumniController {
 
     async getOne({params, response}) {
         let { nim } = params
-        let data = await AlumniModel.query().where('nim', nim).fetch()
-        let count = data.rows.length
+        let data = await AlumniModel.find(nim)
 
-        if(count >= 1) {
+        if(data) {
             return response.status(200).json({
                 httpStatus: 200,
                 message: 'success',
-                total: count,
-                data: data.rows[0]
+                total: 1,
+                data: data
             })
         } else {
             return response.status(200).json({
                 httpStatus: 400,
                 message: 'no_data',
-                total: count,
+                total: 0,
                 data: []
             })
         }
