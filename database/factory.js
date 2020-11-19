@@ -17,14 +17,14 @@ const Factory = use('Factory')
 
 Factory.blueprint('App/Models/Alumni', async (faker) => {
     return {
-        nim: faker.natural(),
+        nim: faker.string({numeric: true, alpha: false, length: 10}),
         nama: faker.name({nationality: 'en'}),
         jenis_kelamin: faker.pickone(['L', 'P']),
         tempat_lahir: faker.city(),
         tanggal_lahir: faker.birthday(),
         no_hp: faker.phone({formatted: false}),
         alamat: faker.address(),
-        angkatan_masuk: faker.birthday({year: faker.year({min: 1960, max: 2002})}),
+        angkatan_masuk: faker.year({min: 1960, max: 2002}),
         fakultas: 'Fakultas Ilmu Komputer',
         jurusan: faker.pickone(['Sistem Informasi', 'Teknik Informaika', 'Manajemen Informatika'])
     }
