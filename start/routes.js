@@ -17,7 +17,24 @@
 const Route = use('Route')
 
 Route.get('/', () => {
-  return { greeting: 'Hello world in JSON' }
+  return { routeList: [
+    {
+      route: '/api/v1/alumni',
+      desc: 'Get All Data Alumni'
+    },
+    {
+      route: '/api/v1/alumni/{nim}',
+      desc: 'Get One Data Alumni'
+    }
+  ] }
 })
 
-Route.get('/alumni', 'AlumniController.index')
+Route.group(() => {
+
+  /**
+   * Alumni Route
+   */
+  Route.get('/alumni', 'AlumniController.index'),
+  Route.get('/alumni/:nim', 'AlumniController.getOne')
+
+}).prefix('/api/v1')
