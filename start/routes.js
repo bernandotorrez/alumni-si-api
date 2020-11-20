@@ -37,9 +37,14 @@ Route.get('/', () => {
           desc: 'Create Alumni Data' 
         },
         {
-          route: '/api/v1/alumni/edit?{nim}',
+          route: '/api/v1/alumni/edit/{nim}',
           method: 'PATCH',
           desc: 'Update Alumni Data By NIM' 
+        },
+        {
+          route: '/api/v1/alumni/delete/{nim}',
+          method: 'DELETE',
+          desc: 'Delete Alumni Data By NIM' 
         }
       ]
     }
