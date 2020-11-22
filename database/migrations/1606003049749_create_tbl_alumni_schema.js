@@ -3,9 +3,9 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class AlumniSchema extends Schema {
+class CreateTblAlumniSchema extends Schema {
   up () {
-    this.create('alumni', (table) => {
+    this.createIfNotExists('tbl_alumni', (table) => {
       table.string('nim', 10).notNullable().primary()
       table.string('nama', 100).notNullable()
       table.enu('jenis_kelamin', ['L', 'P']).notNullable()
@@ -14,15 +14,16 @@ class AlumniSchema extends Schema {
       table.string('no_hp', 15).notNullable()
       table.text('alamat').notNullable()
       table.string('angkatan_masuk', 4).notNullable()
-      table.string('fakultas', 100).notNullable()
-      table.string('jurusan', 50).notNullable()
+      table.integer('id_fakultas', 10).unsigned().notNullable().references('id_fakultas').inTable('tbl_fakultas').onDelete('cascade')
+      table.integer('id_jurusan', 10).unsigned().notNullable().references('id_jurusan').inTable('tbl_jurusan').onDelete('cascade')
+      table.enu('status', [0, 1]).notNullable().defaultTo(1)
       table.timestamps()
     })
   }
 
   down () {
-    this.drop('alumni')
+    this.dropIfExists('tbl_alumni')
   }
 }
 
-module.exports = AlumniSchema
+module.exports = CreateTblAlumniSchema

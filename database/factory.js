@@ -14,7 +14,6 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
-
 Factory.blueprint('App/Models/Alumni', async (faker) => {
     return {
         nim: faker.string({numeric: true, alpha: false, length: 10}),
@@ -25,8 +24,8 @@ Factory.blueprint('App/Models/Alumni', async (faker) => {
         no_hp: faker.phone({formatted: false}),
         alamat: faker.address(),
         angkatan_masuk: faker.year({min: 1960, max: 2002}),
-        fakultas: 'Fakultas Ilmu Komputer',
-        jurusan: faker.pickone(['Sistem Informasi', 'Teknik Informaika', 'Manajemen Informatika'])
+        id_fakultas: 1,
+        id_jurusan: 1
     }
 })
 

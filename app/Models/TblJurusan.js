@@ -3,18 +3,22 @@
 /** @type {typeof import('@adonisjs/lucid/src/Lucid/Model')} */
 const Model = use('Model')
 
-class Alumni extends Model {
+class TblJurusan extends Model {
     static get incrementing() {
-        return false
+        return true
     }
 
     static get primaryKey() {
-        return 'nim'
+        return 'id_jurusan'
+    }
+
+    static get foreignKey() {
+        return 'id_fakultas'
     }
 
     static get table() {
-        return 'tbl_alumni'
+        return 'tbl_jurusan'
     }
 }
 
-module.exports = Alumni
+module.exports = TblJurusan
