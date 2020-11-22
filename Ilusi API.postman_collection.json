@@ -67,7 +67,7 @@
 					"urlencoded": [
 						{
 							"key": "nim",
-							"value": "1310512042",
+							"value": "1310512041",
 							"type": "text"
 						},
 						{
@@ -106,16 +106,19 @@
 							"type": "text"
 						},
 						{
-							"key": "fakultas",
-							"value": "Fakultas Ilmu Komputer",
+							"key": "id_fakultas",
+							"value": "1",
 							"type": "text"
 						},
 						{
-							"key": "jurusan",
-							"value": "Sistem Informasi",
+							"key": "id_jurusan",
+							"value": "2",
 							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"urlencoded": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:3333/api/v1/alumni/create",
@@ -182,17 +185,19 @@
 							"type": "text"
 						},
 						{
-							"key": "fakultas",
-							"value": "Fakultas Ilmu Komputer Update",
+							"key": "id_fakultas",
+							"value": "1",
 							"type": "text"
 						},
 						{
-							"key": "jurusan",
-							"value": "Sistem Informasi Update",
-							"type": "text",
-							"disabled": true
+							"key": "id_jurusan",
+							"value": "1",
+							"type": "text"
 						}
-					]
+					],
+					"options": {
+						"urlencoded": {}
+					}
 				},
 				"url": {
 					"raw": "http://127.0.0.1:3333/api/v1/alumni/edit/1310512042",
