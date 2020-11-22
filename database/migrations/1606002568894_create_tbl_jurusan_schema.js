@@ -13,7 +13,7 @@ class CreateTblJurusanSchema extends Schema {
       table.timestamps()
     })
 
-    this.raw("INSERT INTO tbl_jurusan (id_fakultas, nama_fakultas) VALUE (1, 'Sistem Informasi')")
+    this.raw("INSERT INTO tbl_jurusan (id_fakultas, nama_jurusan) VALUE (1, 'Sistem Informasi')")
   }
 
   down () {
