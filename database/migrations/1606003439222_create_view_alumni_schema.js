@@ -7,7 +7,9 @@ class CreateViewAlumniSchema extends Schema {
   _queryUp = `
       CREATE VIEW IF NOT EXISTS view_alumni
       AS
-      SELECT ta.*, tf.nama_fakultas, tj.nama_jurusan
+      SELECT ta.nim, ta.nama, ta.jenis_kelamin, ta.tempat_lahir, ta.tanggal_lahir,
+      ta.no_hp, ta.alamat, ta.angkatan_masuk,
+      tf.nama_fakultas, tj.nama_jurusan
       FROM tbl_alumni ta
       INNER JOIN tbl_fakultas tf ON tf.id_fakultas = ta.id_fakultas
       INNER JOIN tbl_jurusan tj ON tj.id_jurusan = ta.id_jurusan
