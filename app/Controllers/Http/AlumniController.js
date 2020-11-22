@@ -1,13 +1,14 @@
 'use strict'
 
 const AlumniModel = use('App/Models/Alumni')
+const Database = use('Database')
 
 const alumniModel = new AlumniModel()
 
 class AlumniController {
     async index({response}) {
-        let data = await AlumniModel.all()
-        let count = data.rows.length;
+        let data = await Database.from('view_alumni')
+        let count = data.length;
 
         if(count >= 1) {
             return response.status(200).json({
@@ -28,9 +29,9 @@ class AlumniController {
 
     async getOne({params, response}) {
         let { nim } = params
-        let data = await AlumniModel.find(nim)
+        let data = await Database.from('view_alumni').where({nim: nim})
 
-        if(data) {
+        if(data.length >= 1) {
             return response.status(200).json({
                 httpStatus: 200,
                 message: 'success',
@@ -48,9 +49,10 @@ class AlumniController {
     }
 
     async create({request, response}) {
-        const find = await AlumniModel.find(request.post().nim)
+        const { nim } = request.post()
+        const find = await Database.from('view_alumni').where({nim: nim})
 
-        if(find) {
+        if(find.length >= 1) {
             return response.status(200).json({
                 httpStatus: 200,
                 message: 'exist',
@@ -59,7 +61,6 @@ class AlumniController {
             })
         } else {
             const create = await AlumniModel.create(request.post())
-
             if(create) {
                 return response.status(200).json({
                     httpStatus: 200,
@@ -79,9 +80,10 @@ class AlumniController {
     }
 
     async edit({request, params, response}) {
-        const find = await AlumniModel.find(params.nim)
+        const { nim } = params
+        const find = await Database.from('view_alumni').where({nim: nim})
 
-        if(!find) {
+        if(find.length == 0) {
             return response.status(200).json({
                 httpStatus: 200,
                 message: 'not_found',
@@ -110,9 +112,10 @@ class AlumniController {
     }
 
     async delete({params, response}) {
-        const find = await AlumniModel.find(params.nim)
+        const { nim } = params
+        const find = await await Database.from('view_alumni').where({nim: nim})
 
-        if(!find) {
+        if(find.length == 0) {
             return response.status(200).json({
                 httpStatus: 200,
                 message: 'not_found',

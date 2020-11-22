@@ -10,8 +10,8 @@ class UpdateAlumni {
       no_hp: 'required|integer|min:10|max:15',
       alamat: 'required|string|min:6',
       angkatan_masuk: 'required|integer|min:4|max:4',
-      fakultas: 'required|string|min:10|max:100',
-      jurusan: 'required|string|min:5|max:50'
+      id_fakultas: 'required|min:1|max:10',
+      id_jurusan: 'required|min:1|max:10',
     }
   }
 
