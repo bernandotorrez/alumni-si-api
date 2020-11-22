@@ -1,14 +1,11 @@
 'use strict'
 
-const AlumniModel = use('App/Models/Alumni')
-const Database = use('Database')
+const FakultasModel = use('App/Models/TblFakultas')
 
-const alumniModel = new AlumniModel()
-
-class AlumniController {
+class FakultasController {
     async index({response}) {
-        const data = await Database.from('view_alumni')
-        const count = data.length;
+        const data = await FakultasModel.query().active().fetch()
+        const count = data.rows.length
 
         if(count >= 1) {
             return response.status(200).json({
@@ -16,6 +13,28 @@ class AlumniController {
                 message: 'success',
                 total: count,
                 data: data
+            })
+        } else {
+            return response.status(200).json({
+                httpStatus: 200,
+                message: 'no_data',
+                total: 0,
+                data: []
+            })
+        }
+    }
+
+    async getOne({params, response}) {
+        const { id } = params
+        const data = await FakultasModel.query().where('id_fakultas', id).active().fetch()
+        const count = data.rows.length
+
+        if(count >= 1) {
+            return response.status(200).json({
+                httpStatus: 200,
+                message: 'success',
+                total: 1,
+                data: data.rows[0]
             })
         } else {
             return response.status(200).json({
@@ -27,40 +46,20 @@ class AlumniController {
         }
     }
 
-    async getOne({params, response}) {
-        const { nim } = params
-        const data = await Database.from('view_alumni').where({nim: nim})
-
-        if(data.length >= 1) {
-            return response.status(200).json({
-                httpStatus: 200,
-                message: 'success',
-                total: 1,
-                data: data[0]
-            })
-        } else {
-            return response.status(200).json({
-                httpStatus: 404,
-                message: 'not_found',
-                total: 0,
-                data: []
-            })
-        }
-    }
-
     async create({request, response}) {
-        const { nim } = request.post()
-        const find = await Database.from('view_alumni').where({nim: nim})
+        const { nama_fakultas } = request.post()
+        const find = await FakultasModel.query().where('nama_fakultas', nama_fakultas).active().fetch()
 
-        if(find.length >= 1) {
+        if(find.rows.length >= 1) {
             return response.status(200).json({
                 httpStatus: 200,
                 message: 'exist',
                 total: 0,
                 data: []
-            })
+            }) 
         } else {
-            const create = await AlumniModel.create(request.post())
+            const create = await FakultasModel.create(request.post())
+
             if(create) {
                 return response.status(200).json({
                     httpStatus: 200,
@@ -80,18 +79,18 @@ class AlumniController {
     }
 
     async edit({request, params, response}) {
-        const { nim } = params
-        const find = await Database.from('view_alumni').where({nim: nim})
-
-        if(find.length == 0) {
+        const { id } = params
+        const find = await FakultasModel.query().where('id_fakultas', id).active().fetch()
+   
+        if(find.rows.length == 0) {
             return response.status(200).json({
-                httpStatus: 200,
+                httpStatus: 404,
                 message: 'not_found',
                 total: 0,
                 data: []
-            })
+            }) 
         } else {
-            const update = await AlumniModel.query().where('nim', params.nim).update(request.post())
+            const update = await FakultasModel.query().where('id_fakultas', id).active().update(request.post())
 
             if(update) {
                 return response.status(200).json({
@@ -112,25 +111,25 @@ class AlumniController {
     }
 
     async delete({params, response}) {
-        const { nim } = params
-        const find = await Database.from('view_alumni').where({nim: nim})
-
-        if(find.length == 0) {
+        const { id } = params
+        const find = await FakultasModel.query().where('id_fakultas', id).active().fetch()
+        
+        if(find.rows.length == 0) {
             return response.status(200).json({
-                httpStatus: 200,
+                httpStatus: 404,
                 message: 'not_found',
                 total: 0,
                 data: []
             })
         } else {
-            const destroy = await AlumniModel.query().where('nim', params.nim).update({status: '0'})
+            const destroy = await FakultasModel.query().where('id_fakultas', id).update({status: '0'})
 
             if(destroy) {
                 return response.status(200).json({
                     httpStatus: 200,
                     message: 'delete_success',
                     total: 1,
-                    data: nim
+                    data: id
                 })
             } else {
                 return response.status(200).json({
@@ -144,4 +143,4 @@ class AlumniController {
     }
 }
 
-module.exports = AlumniController
+module.exports = FakultasController

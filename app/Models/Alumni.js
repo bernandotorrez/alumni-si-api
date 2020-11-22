@@ -15,6 +15,14 @@ class Alumni extends Model {
     static get table() {
         return 'tbl_alumni'
     }
+
+    static get hidden() {
+        return ['status']
+    }
+
+    static scopeActive(builder) {
+        return builder.where('status', '1')
+    }
 }
 
 module.exports = Alumni

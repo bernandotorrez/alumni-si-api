@@ -22,30 +22,64 @@ Route.get('/', () => {
     v1: {
       routeList: [
         {
-          route: '/api/v1/alumni',
-          method: 'GET',
-          desc: 'Get All Data Alumni'
+          Alumni: [
+            {
+              route: '/api/v1/alumni',
+              method: 'GET',
+              desc: 'Get All Data Alumni'
+            },
+            {
+              route: '/api/v1/alumni/{nim}',
+              method: 'GET',
+              desc: 'Get One Data Alumni by NIM'
+            },
+            {
+              route: '/api/v1/alumni/create',
+              method: 'POST',
+              desc: 'Create Data Alumni'
+            },
+            {
+              route: '/api/v1/alumni/edit/{nim}',
+              method: 'PATCH',
+              desc: 'Update Data Alumni By NIM'
+            },
+            {
+              route: '/api/v1/alumni/delete/{nim}',
+              method: 'DELETE',
+              desc: 'Delete Data Alumni By NIM'
+            },
+          ]
         },
         {
-          route: '/api/v1/alumni/{nim}',
-          method: 'GET',
-          desc: 'Get One Data Alumni'
-        },
-        {
-          route: '/api/v1/alumni/create',
-          method: 'POST',
-          desc: 'Create Alumni Data' 
-        },
-        {
-          route: '/api/v1/alumni/edit/{nim}',
-          method: 'PATCH',
-          desc: 'Update Alumni Data By NIM' 
-        },
-        {
-          route: '/api/v1/alumni/delete/{nim}',
-          method: 'DELETE',
-          desc: 'Delete Alumni Data By NIM' 
+          Fakultas: [
+            {
+              route: '/api/v1/fakultas',
+              method: 'GET',
+              desc: 'Get All Data Fakultas'
+            },
+            {
+              route: '/api/v1/fakultas/{id}',
+              method: 'GET',
+              desc: 'Get One Data Fakultas By ID'
+            },
+            {
+              route: '/api/v1/fakultas/create',
+              method: 'POST',
+              desc: 'Create Data Fakultas'
+            },
+            {
+              route: '/api/v1/fakultas/edit/{id}',
+              method: 'PATCH',
+              desc: 'Update Fakultas Data By ID'
+            },
+            {
+              route: '/api/v1/fakultas/delete/{id}',
+              method: 'DELETE',
+              desc: 'Delete Data Alumni By ID'
+            },
+          ]
         }
+
       ]
     }
     
@@ -62,5 +96,15 @@ Route.group(() => {
   Route.post('/alumni/create', 'AlumniController.create').validator('CreateAlumni')
   Route.patch('/alumni/edit/:nim', 'AlumniController.edit').validator('UpdateAlumni')
   Route.delete('/alumni/delete/:nim', 'AlumniController.delete')
+
+
+  /**
+   * Fakultas Route
+   */
+  Route.get('/fakultas', 'FakultasController.index')
+  Route.get('/fakultas/:id', 'FakultasController.getOne')
+  Route.post('/fakultas/create', 'FakultasController.create').validator('CreateFakultas')
+  Route.patch('/fakultas/edit/:id', 'FakultasController.edit').validator('CreateFakultas')
+  Route.delete('/fakultas/delete/:id', 'FakultasController.delete')
 
 }).prefix('/api/v1')

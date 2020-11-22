@@ -19,6 +19,14 @@ class TblJurusan extends Model {
     static get table() {
         return 'tbl_jurusan'
     }
+
+    static get hidden() {
+        return ['status']
+    }
+
+    static scopeActive(builder) {
+        return builder.where('status', '1')
+    }
 }
 
 module.exports = TblJurusan

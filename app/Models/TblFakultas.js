@@ -15,6 +15,14 @@ class TblFakultas extends Model {
     static get incrementing() {
         return true
     }
+
+    static get hidden() {
+        return ['status']
+    }
+
+    static scopeActive(builder) {
+        return builder.where('status', '1')
+    }
 }
 
 module.exports = TblFakultas
